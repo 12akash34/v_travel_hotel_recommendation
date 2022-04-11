@@ -1,16 +1,17 @@
 import flask
 import pandas as pd
+from requests import get
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 app = flask.Flask(__name__, template_folder='templates')
 
-df2 = pd.read_csv('./model/tmdb.csv')
+df2 = pd.read_csv('./model/goibibo_com-travel_sample.csv')
 
 tfidf = TfidfVectorizer(stop_words='english',analyzer='word')
 
 #Construct the required TF-IDF matrix by fitting and transforming the data
-tfidf_matrix = tfidf.fit_transform(df2['soup'])
+tfidf_matrix = tfidf.fit_transform(df2['point_of_interest'])
 print(tfidf_matrix.shape)
 
 #construct cosine similarity matrix
@@ -18,10 +19,10 @@ cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 print(cosine_sim.shape)
 
 df2 = df2.reset_index()
-indices = pd.Series(df2.index, index=df2['title']).drop_duplicates()
+indices = pd.Series(df2.index, index=df2['property_name']).drop_duplicates()
 
 # create array with all movie titles
-all_titles = [df2['title'][i] for i in range(len(df2['title']))]
+all_titles = [df2['property_name'][i] for i in range(len(df2['property_name']))]
 
 def get_recommendations(title):
     # Get the index of the movie that matches the title
@@ -33,7 +34,7 @@ def get_recommendations(title):
     # Get the scores of the 10 most similar movies
     sim_scores = sim_scores[1:11]
     # print similarity scores
-    print("\n movieId      score")
+    print("\n hotelId      score")
     for i in sim_scores:
         print(i)
 
@@ -41,10 +42,14 @@ def get_recommendations(title):
     movie_indices = [i[0] for i in sim_scores]
 
     # return list of similar movies
-    return_df = pd.DataFrame(columns=['Title','Homepage'])
-    return_df['Title'] = df2['title'].iloc[movie_indices]
-    return_df['Homepage'] = df2['homepage'].iloc[movie_indices]
-    return_df['ReleaseDate'] = df2['release_date'].iloc[movie_indices]
+    return_df = pd.DataFrame(columns=['Hotel','Homepage'])
+    return_df['Hotel'] = df2['property_name'].iloc[movie_indices]
+    return_df['Homepage'] = df2['pageurl'].iloc[movie_indices]
+    return_df['City'] = df2['city'].iloc[movie_indices]
+    return_df['Points2'] = df2['point_of_interest2'].iloc[idx]
+    return_df['Address'] = df2['address'].iloc[idx]
+    return_df['Services'] = df2['additional_info'].iloc[idx]
+    return_df['Services2'] = df2['additional_info'].iloc[movie_indices]
     return return_df
 
 # Set up the main route
@@ -55,7 +60,7 @@ def main():
         return(flask.render_template('index.html'))
             
     if flask.request.method == 'POST':
-        m_name = " ".join(flask.request.form['movie_name'].title().split())
+        m_name = " ".join(flask.request.form['hotel_name'].split())
 #        check = difflib.get_close_matches(m_name,all_titles,cutout=0.50,n=1)
         if m_name not in all_titles:
             return(flask.render_template('notFound.html',name=m_name))
@@ -63,17 +68,24 @@ def main():
             result_final = get_recommendations(m_name)
             names = []
             homepage = []
-            releaseDate = []
+            city = []
+            service2 = []
+            points = ""
+            add = ""
+            services = ""
             for i in range(len(result_final)):
                 names.append(result_final.iloc[i][0])
-                releaseDate.append(result_final.iloc[i][2])
+                city.append(result_final.iloc[i][2])
+                service2.append(result_final.iloc[i][6])
                 if(len(str(result_final.iloc[i][1]))>3):
                     homepage.append(result_final.iloc[i][1])
                 else:
                     homepage.append("#")
-                
-
-            return flask.render_template('found.html',movie_names=names,movie_homepage=homepage,search_name=m_name, movie_releaseDate=releaseDate)
+            points = result_final.iloc[0][3]
+            add = result_final.iloc[0][4]
+            services = result_final.iloc[0][5]
+            print(points)
+            return flask.render_template('found.html',hotel_names=names,hotel_homepage=homepage,search_name=m_name, city=city, points=points, address=add, services=services, service2=service2 )
 
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8080, debug=True)

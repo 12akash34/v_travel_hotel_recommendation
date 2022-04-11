@@ -81,10 +81,10 @@ figure {
 .movie{
     margin-right: 30vh;
     margin-left: 30vh;
-    display: block;
+    /*display: block;*/
     background-color: white;
     text-align: center;
-    border-radius: 3%
+    border-radius: 3%;
     padding:10px;
 }
 #back_btn{
@@ -119,52 +119,68 @@ button{
 <body>
     <button id="back_btn" onClick={window.history.back()}>Back to Home Page</button>
     <div class="movie">
-        <h2><u>Movie Recommendations for "{{ search_name }}"</u></h2>
-        <table class="movie_table" align="center">
+        <h3>Other Hotels Recommendations for "{{ search_name }}" having similar tourist destinations</h3>
+        <h5>Services :</h5> {{services}}
+        <h5>Address :</h5> {{address}}
+        <h5>Points Of Interest :</h5>
+            {{points}}
+            <p></p>
+        <table class="movie_table" style="margin : 0 auto">
             <tr>
-                <th>Movie Title</th>
-                <th>Release Date</th>
+                <th>Hotels</th>
+                <th>Services</th>
+                <th>City</th>
             </tr>
             <tbody class="table_body">
                 <tr>
-                    <td><a href={{ movie_homepage[0] }} target="_blank">{{ movie_names[0] }}</a></td>
-                    <td>{{ movie_releaseDate[0] }}</td>
+                    <td><a href={{ hotel_homepage[0] }} target="_blank">{{ hotel_names[0] }}</a></td>
+                    <td>{{ service2[0] }}</td>
+                    <td>{{ city[0] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[1] }} target="_blank">{{ movie_names[1] }}</a></td>
-                    <td>{{ movie_releaseDate[1] }}</td>
+                    <td><a href={{ hotel_homepage[1] }} target="_blank">{{ hotel_names[1] }}</a></td>
+                    <td>{{ service2[1] }}</td>
+                    <td>{{ city[1] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[2] }} target="_blank">{{ movie_names[2] }}</a></td>
-                    <td>{{ movie_releaseDate[2] }}</td>
+                    <td><a href={{ hotel_homepage[2] }} target="_blank">{{ hotel_names[2] }}</a></td>
+                    <td>{{ service2[2] }}</td>
+                    <td>{{ city[2] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[3] }} target="_blank">{{ movie_names[3] }}</a></td>
-                    <td>{{ movie_releaseDate[3] }}</td>
+                    <td><a href={{ hotel_homepage[3] }} target="_blank">{{ hotel_names[3] }}</a></td>
+                    <td>{{ service2[3] }}</td>
+                    <td>{{ city[3] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[4] }} target="_blank">{{ movie_names[4] }}</a></td>
-                    <td>{{ movie_releaseDate[4] }}</td>
+                    <td><a href={{ hotel_homepage[4] }} target="_blank">{{ hotel_names[4] }}</a></td>
+                    <td>{{ service2[4] }}</td>
+                    <td>{{ city[4] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[5] }} target="_blank">{{ movie_names[5] }}</a></td>
-                    <td>{{ movie_releaseDate[5] }}</td>
+                    <td><a href={{ hotel_homepage[5] }} target="_blank">{{ hotel_names[5] }}</a></td>
+                    <td>{{ service2[5] }}</td>
+                    <td>{{ city[5] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[6] }} target="_blank">{{ movie_names[6] }}</a></td>
-                    <td>{{ movie_releaseDate[6] }}</td>
+                    <td><a href={{ hotel_homepage[6] }} target="_blank">{{ hotel_names[6] }}</a></td>
+                    <td>{{ service2[6] }}</td>
+                    <td>{{ city[6] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[7] }} target="_blank">{{ movie_names[7] }}</a></td>
-                    <td>{{ movie_releaseDate[7] }}</td>
+                    <td><a href={{ hotel_homepage[7] }} target="_blank">{{ hotel_names[7] }}</a></td>
+                    <td>{{ service2[7] }}</td>
+                    <td>{{ city[7] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[8] }} target="_blank">{{ movie_names[8] }}</a></td>
-                    <td>{{ movie_releaseDate[8] }}</td>
+                    <td><a href={{ hotel_homepage[8] }} target="_blank">{{ hotel_names[8] }}</a></td>
+                    <td>{{ service2[8] }}</td>
+                    <td>{{ city[8] }}</td>
                 </tr>
                 <tr>
-                    <td><a href={{ movie_homepage[9] }} target="_blank">{{ movie_names[9] }}</a></td>
-                    <td>{{ movie_releaseDate[9] }}</td>
+                    <td><a href={{ hotel_homepage[9] }} target="_blank">{{ hotel_names[9] }}</a></td>
+                    <td>{{ service2[9] }}</td>
+                    <td>{{ city[9] }}</td>
                 </tr>
             </tbody>
         </table>

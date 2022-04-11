@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CB Movie Recommender</title>
+  <title>Hotel Recommender</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:300,500&amp;display=swap'>
@@ -82,7 +82,7 @@ a {
     display: block;
     text-align: center;
 }
-#movie_name{
+#hotel_name{
     width: 70%;
     padding: 1em;
     border-radius: 5px;
@@ -115,15 +115,15 @@ h2{
 </head>
 <body>
 
-    <h2><u>Content Based Movie Recommendation System</u></h2>
+    <h2><u>Hotel Recommendation System</u></h2>
     <div class="movie">
         <form action="{{ url_for('main') }}" method="POST">
-            <input type="text" id="movie_name" name="movie_name" placeholder="Enter a full movie name .." autocorrect="off" autocapitalize="off" required />
+            <input type="text" id="hotel_name" name="hotel_name" placeholder="Enter a full hotel name" autocorrect="off" autocapitalize="off" required />
             <input type="submit" id="submission_button" value="Submit"/>
             <input type="reset" id="submission_button" value="Reset"/>
         </form>
   </div>
-  <p class="creds">Type the similar movies you want to find</p>
+  <p class="creds">Type the hotel name you want to find recommendations</p>
   <script src='https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js'></script>
 
