@@ -4,7 +4,7 @@ from requests import get
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-app = flask.Flask(__name__, template_folder='templates')
+app = flask.Flask(__name__, static_url_path='/static', template_folder='templates')
 
 df2 = pd.read_csv('./model/goibibo_com-travel_sample.csv')
 

@@ -19,12 +19,24 @@ html {
 }
 
 body {
+  position: relative;
+}
+
+.body2 {
+  position : absolute;
+  top: 0; left: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 100%;
-  background-color: #DC143C;
   line-height: 1.5;
   color: #000;
+  margin-right: 30vh;
+    margin-left: 30vh;
+    display: block;
+    background-color: white;
+    text-align: center;
+    border-radius: 3%;
+    padding:10px;
 }
 @media (min-width: 32rem) {
   body {
@@ -81,7 +93,7 @@ figure {
 .movie{
     margin-right: 30vh;
     margin-left: 30vh;
-    /*display: block;*/
+    display: block;
     background-color: white;
     text-align: center;
     border-radius: 3%;
@@ -117,8 +129,10 @@ button{
 </style>
 </head>
 <body>
+  <img src="/static/hotel_bg.jpeg" height="100%" width="100%" style="object-fit: cover">
+  <div class="body2">
     <button id="back_btn" onClick={window.history.back()}>Back to Home Page</button>
-    <div class="movie">
+    <div>
         <h3>Other Hotels Recommendations for "{{ search_name }}" having similar tourist destinations</h3>
         <h5>Services :</h5> {{services}}
         <h5>Address :</h5> {{address}}
@@ -190,6 +204,6 @@ button{
 <!-- partial -->
   <script src='https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js'></script>    
-  
+  </div>
 </body>
 </html>

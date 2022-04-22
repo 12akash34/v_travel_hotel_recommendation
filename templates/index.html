@@ -23,6 +23,11 @@ html {
 }
 
 body {
+  position: relative;
+}
+.body2 {
+  position : absolute;
+  top: 0; left: 0;
   margin-top: 15vh;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -114,7 +119,8 @@ h2{
 </style>
 </head>
 <body>
-
+  <img src="/static/hotel_bg.jpeg" height="100%" width="100%" style="object-fit: cover">
+  <div class="body2">
     <h2><u>Hotel Recommendation System</u></h2>
     <div class="movie">
         <form action="{{ url_for('main') }}" method="POST">
@@ -126,6 +132,6 @@ h2{
   <p class="creds">Type the hotel name you want to find recommendations</p>
   <script src='https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js'></script>
-
+</div>
 </body>
 </html>
